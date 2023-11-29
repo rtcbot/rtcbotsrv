@@ -103,6 +103,7 @@ rtcbot Server是一个AI驱动的、基于实时音视频交互的视频见证�
 ![alt 视频问答](视频问答.jpg)  
 
 
+
 ## 关于声网账号  
 
 +注意：目前的版本使用的声网的音视频（Agora rtc）平台，需要配置声网的账号  
@@ -111,7 +112,7 @@ rtcbot Server是一个AI驱动的、基于实时音视频交互的视频见证�
 （修改完成后需要重启 rtcbotsrv )  
 
 
-# 其它
+## 其它
  一些说明参见： https://weibo.com/rtcbot  
 
  定制化开发可发邮件：rtcbot@163.com
