@@ -36,8 +36,8 @@ rtcbot Server是一个AI驱动的、基于实时音视频交互的视频见证�
 （下面均假设安装目录是/home/rtcbot) ，并且执行下面操作的用户要对 /home/rtcbot 目录有读写权限和对/tmp目录有读写权限。  
 
 (2)将下载的文件包：deploy-2023-11-29.tar.gz 放到 /home/rtcbot 目录下，解包:  
-        cd /home/rtcbot  
-		      tar xzvf deploy-2023-11-29.tar.gz  
+        <span>```cd /home/rtcbot  
+		      tar xzvf deploy-2023-11-29.tar.gz  ```</span>
 
 (3)进入 /home/rtcbot/server/bin 目录，编辑 setenv.sh ,将其中的  
        SERVER_ROOT="/home/work/rainbot/server" 修改为实际的server目录，在这里就是修改为 SERVER_ROOT="/home/rtcbot/server"
