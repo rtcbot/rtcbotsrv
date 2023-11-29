@@ -22,11 +22,11 @@ rtcbot Server是一个AI驱动的、基于实时音视频交互的视频见证�
 
 # 试用版下载
 
-+rtcbot v1.0安装包文件：deploy-2023-11-29.tar.gz。下载链接：https://pan.baidu.com/s/1lxBqsf30rhQL9r5QYzURLg 提取码：a2d5
+	rtcbot v1.0安装包文件：deploy-2023-11-29.tar.gz。下载链接：https://pan.baidu.com/s/1lxBqsf30rhQL9r5QYzURLg 提取码：a2d5
 
-+安装包包含了编译好的rtcbot server可执行程序和依赖的所有库和模型文件和资源文件等，同时也包含一个简单的H5客户端样例，可以直接部署使用。
+	安装包包含了编译好的rtcbot server可执行程序和依赖的所有库和模型文件和资源文件等，同时也包含一个简单的H5客户端样例，可以直接部署使用。
 
-+安装包文件大约有1.4G左右，主要是包含的pytorch_cuda的共享库文件较大.
+	安装包文件大约有1.4G左右，主要是包含的pytorch_cuda的共享库文件较大.
 
 # 试用版安装说明
 
