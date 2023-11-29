@@ -107,7 +107,7 @@ rtcbot Server是一个AI驱动的、基于实时音视频交互的视频见证�
 
 +注意：目前的版本使用的声网的音视频（Agora rtc）平台，需要配置声网的账号  
 +目前测试包中配置是我的个人的测试账号( 欢迎白嫖:-) ), 但不保证账户上随时有音视频流量额度。  
-+如果需要可以登录声网(https://www.shengwang.cn/)   创建自己的应用账号,然后修改配置文件 /home/rtcbot/server/rtc/globalcfg.ini中app_id和app_certificate  
++如果需要可以登录声网(https://www.shengwang.cn/)   创建自己的应用账号,然后修改配置文件 /home/rtcbot/server/etc/globalcfg.ini中app_id和app_certificate  
 （修改完成后需要重启 rtcbotsrv )  
 
 
