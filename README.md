@@ -36,19 +36,20 @@ rtcbot Server是一个AI驱动的、基于实时音视频交互的视频见证�
 （下面均假设安装目录是/home/rtcbot) ，并且执行下面操作的用户要对 /home/rtcbot 目录有读写权限和对/tmp目录有读写权限。  
 
 (2)将下载的文件包：deploy-2023-11-29.tar.gz 放到 /home/rtcbot 目录下，解包:  
-        <span>```cd /home/rtcbot  
+        <span>```cd /home/rtcbot    
 		      tar xzvf deploy-2023-11-29.tar.gz  ```</span>
 
 (3)进入 /home/rtcbot/server/bin 目录，编辑 setenv.sh ,将其中的  
-       SERVER_ROOT="/home/work/rainbot/server" 修改为实际的server目录，在这里就是修改为 SERVER_ROOT="/home/rtcbot/server"
-	   
-	   保存 setenv.sh后在 /home/rtcbot/server/bin 目录下执行 :  
-	   chmod +x setenv.sh  
-	   ./setenv.sh   
+       SERVER_ROOT="/home/work/rainbot/server" 修改为实际的server目录，在这里就是修改为 SERVER_ROOT="/home/rtcbot/server",    	   
+      保存 setenv.sh后在 /home/rtcbot/server/bin 目录下执行 :  
+    <span>```
+	   chmod +x setenv.sh    
+	   ./setenv.sh   ```</span>
 
 (4) 在 /home/rtcbot/server/bin目录下启动服务:  
-       cd /home/rtcbot/server/bin  
-	      ./rtcbotsrv -c 1   
+ <span>```
+       cd /home/rtcbot/server/bin    
+	      ./rtcbotsrv -c 1   ```<span> 
 	   
 	   说明：参数 -c 1 表示作为第1个通道的服务启动。同一台服务器上可以同时启动多个通道的server(只要服务器CPU，GPU，内存够用)。  
 	   就用 -c 跟上相应的数字即可  
@@ -67,20 +68,20 @@ rtcbot Server是一个AI驱动的、基于实时音视频交互的视频见证�
 
 下面说明如何启动安装包附带的一个(用Python编写)web客户测试客户端：  
 
-(1) 进入/home/rtcbot/webdemo,编辑 webmain.py, 将27行的 avdata_home = "/home/work/rainbot/avdata" 修改为为实际的目录，在这里就是  
-       avdata_home = "/home/rtcbot/avdata"
+(1) 进入/home/rtcbot/webdemo,编辑 webmain.py, 将27行的 avdata_home = "/home/work/rainbot/avdata" 修改为为实际的目录，在这里就是avdata_home = "/home/rtcbot/avdata"
 
    ( 注:如果服务正常启动，会自动创建 /home/rtcbot/avdata 目录)  
 
 (2) 运行这个Python脚本需要安装 Flask,flask_cors 包。如果还没有安装的话，执行:  
-        pip install Flask  
-		      pip install flask_cors  
+         <span>```pip install Flask  
+	pip install flask_cors   ```<span>
 	
      	建议使用Python3.6以上版本  
 
 (3) 注意到 webmain.py 的最后2行代码是：  
-    app.run(host="0.0.0.0", port=8091, ssl_context=('server.crt', 'server.key'))  
-    #app.run(host="0.0.0.0", port=8091)  
+ <span>```
+    app.run(host="0.0.0.0", port=8091, ssl_context=('server.crt', 'server.key'))    
+    #app.run(host="0.0.0.0", port=8091)   ```<span>
 	
 	表明最好是用 https 的方式启动web服务。这是因为用手机浏览器打开测试页面时，需要用到摄像头和麦克风。目前主流的浏览器都不支持在非https的情况下使用摄像头和麦克风了。  
 	
