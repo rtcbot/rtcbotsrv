@@ -50,18 +50,13 @@ rtcbot Server是一个AI驱动的、基于实时音视频交互的视频见证�
  <span>```
        cd /home/rtcbot/server/bin    
 	      ./rtcbotsrv -c 1   ```<span> 
-	   
-	   说明：参数 -c 1 表示作为第1个通道的服务启动。同一台服务器上可以同时启动多个通道的server(只要服务器CPU，GPU，内存够用)。  
-	   就用 -c 跟上相应的数字即可  
-	   
-	   重新启动也是执行同样操作(rtcbotsrv会自动杀死之前的相同通道的进程再重新启动)  
+ 说明：参数 -c 1 表示作为第1个通道的服务启动。同一台服务器上可以同时启动多个通道的server(只要服务器CPU，GPU，内存够用)。  就用 -c 跟上相应的数字即可,重新启动也是执行同样操作(rtcbotsrv会自动杀死之前的相同通道的进程再重新启动)  
 	   
 (5) rtcbotsrv 默认是作为后台守护进程运行的。如果成功启动后，先等一会后查看进程是否运行中:  
-
+<span>```
       ps -ef|grep rtcbotsrv   
-	  
-	  也可以查看日志文件 /home/rtcbot/log/rtcbotsrv_1.log,如果最后一行显示Ready to receive command...表示服务正常启动  
-
+ ```<span>
+    也可以查看日志文件 /home/rtcbot/log/rtcbotsrv_1.log,如果最后一行显示Ready to receive command...表示服务正常启动.  
     问题：最常见的启动问题就是找不到GPU或服务器cuda版本太低。rtcbotsrv 是需要安装cuda>=10.2的GPU环境。可以用 nvidia-smi 查看服务器上GPU是否正常以及相应的cuda版本  
 
 作为服务器启动上面的步骤就完成了。  
@@ -74,8 +69,7 @@ rtcbot Server是一个AI驱动的、基于实时音视频交互的视频见证�
 
 (2) 运行这个Python脚本需要安装 Flask,flask_cors 包。如果还没有安装的话，执行:  
          <span>```pip install Flask  
-	pip install flask_cors   ```<span>
-	
+	pip install flask_cors   ```<span>  	
      	建议使用Python3.6以上版本  
 
 (3) 注意到 webmain.py 的最后2行代码是：  
@@ -83,11 +77,10 @@ rtcbot Server是一个AI驱动的、基于实时音视频交互的视频见证�
     app.run(host="0.0.0.0", port=8091, ssl_context=('server.crt', 'server.key'))    
     #app.run(host="0.0.0.0", port=8091)   ```<span>
 	
-	表明最好是用 https 的方式启动web服务。这是因为用手机浏览器打开测试页面时，需要用到摄像头和麦克风。目前主流的浏览器都不支持在非https的情况下使用摄像头和麦克风了。  
+表明最好是用 https 的方式启动web服务。这是因为用手机浏览器打开测试页面时，需要用到摄像头和麦克风。目前主流的浏览器都不支持在非https的情况下使用摄像头和麦克风了。    
+所以你需要为Flask的web服务配置一个简单的https。这个网上很多写如何配置的文章，在这里就不再赘述。  
 	
-	所以你需要为Flask的web服务配置一个简单的https。这个网上很多写如何配置的文章，在这里就不再赘述。  
-	
-(4) 运行 python webmain.py   
+(4) 运行 python webmain.py     
 
 (5) 用手机浏览器打开相应的地址(端口默认是8091)，比如 https://192.168.0.202:8091/static/index.html  
     可以看到4个演示场景的页面入口。点击进入后看到测试麦克分和摄像头的页面（默认使用前置摄像头）。如果测试麦克分和摄像头正常，点击关闭。  
