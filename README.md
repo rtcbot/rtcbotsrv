@@ -22,69 +22,67 @@ rtcbot Server是一个AI驱动的、基于实时音视频交互的视频见证�
 
 # 试用版下载
 
-	rtcbot v1.0安装包文件：deploy-2023-11-29.tar.gz。下载链接：https://pan.baidu.com/s/1lxBqsf30rhQL9r5QYzURLg 提取码：a2d5
+（1）rtcbot v1.0安装包文件：deploy-2023-11-29.tar.gz。下载链接：https://pan.baidu.com/s/1lxBqsf30rhQL9r5QYzURLg 提取码：a2d5
 
-	安装包包含了编译好的rtcbot server可执行程序和依赖的所有库和模型文件和资源文件等，同时也包含一个简单的H5客户端样例，可以直接部署使用。
+（2）安装包包含了编译好的rtcbot server可执行程序和依赖的所有库和模型文件和资源文件等，同时也包含一个简单的H5客户端样例，可以直接部署使用。
 
-	安装包文件大约有1.4G左右，主要是包含的pytorch_cuda的共享库文件较大.
+（3）安装包文件大约有1.4G左右，主要是包含的pytorch_cuda的共享库文件较大.
 
 # 试用版安装说明
 
-+资源要求：操作系统 centos 7以上，带Nvidia GPU，cuda>=10.2    
+#### 资源要求：操作系统 centos 7以上，带Nvidia GPU，cuda>=10.2    
 
-+(1)最好新建一个普通用户 rtcbot, 对应的HOME目录是 /home/rtcbot , 来进行后面的操作。当然如果你是一个人玩的开发环境，用 root 用户进行后面的操作也没问题。 建议新建目录比如 /home/rtcbot作为安装目录。
+(1)最好新建一个普通用户 rtcbot, 对应的HOME目录是 /home/rtcbot , 来进行后面的操作。当然如果你是一个人玩的开发环境，用 root 用户进行后面的操作也没问题。 建议新建目录比如 /home/rtcbot作为安装目录。
 （下面均假设安装目录是/home/rtcbot) ，并且执行下面操作的用户要对 /home/rtcbot 目录有读写权限和对/tmp目录有读写权限。  
 
-+(2)将下载的文件包：deploy-2023-11-29.tar.gz 放到 /home/rtcbot 目录下，解包:  
-        <span>```cd /home/rtcbot    
-		      tar xzvf deploy-2023-11-29.tar.gz  ```</span>
+(2)将下载的文件包：deploy-2023-11-29.tar.gz 放到 /home/rtcbot 目录下，解包:  
+	
+	cd /home/rtcbot    
+	tar xzvf deploy-2023-11-29.tar.gz 
 
-+(3)进入 /home/rtcbot/server/bin 目录，编辑 setenv.sh ,将其中的  
-       SERVER_ROOT="/home/work/rainbot/server" 修改为实际的server目录，在这里就是修改为 SERVER_ROOT="/home/rtcbot/server",    	   
-      保存 setenv.sh后在 /home/rtcbot/server/bin 目录下执行 :  
-    <span>```
-	   chmod +x setenv.sh    
-	   ./setenv.sh   ```</span>
+(3)进入 /home/rtcbot/server/bin 目录，编辑 setenv.sh ,将其中的SERVER_ROOT="/home/work/rainbot/server" 修改为实际的server目录，在这里就是修改为 SERVER_ROOT="/home/rtcbot/server", 保存 setenv.sh后在 /home/rtcbot/server/bin 目录下执行 :  
 
-+(4) 在 /home/rtcbot/server/bin目录下启动服务:  
- <span>```
-       cd /home/rtcbot/server/bin    
-	      ./rtcbotsrv -c 1   ```<span> 
- 说明：参数 -c 1 表示作为第1个通道的服务启动。同一台服务器上可以同时启动多个通道的server(只要服务器CPU，GPU，内存够用)。  就用 -c 跟上相应的数字即可,重新启动也是执行同样操作(rtcbotsrv会自动杀死之前的相同通道的进程再重新启动)  
+	chmod +x setenv.sh    
+	./setenv.sh   
+
+(4) 在 /home/rtcbot/server/bin目录下启动服务:  
+
+	cd /home/rtcbot/server/bin    
+	./rtcbotsrv -c 1  
+
+说明：参数 -c 1 表示作为第1个通道的服务启动。同一台服务器上可以同时启动多个通道的server(只要服务器CPU，GPU，内存够用)。  就用 -c 跟上相应的数字即可,重新启动也是执行同样操作(rtcbotsrv会自动杀死之前的相同通道的进程再重新启动)  
 	   
-+(5) rtcbotsrv 默认是作为后台守护进程运行的。如果成功启动后，先等一会后查看进程是否运行中:  
-<span>```
-      ps -ef|grep rtcbotsrv   
- ```<span>
-    也可以查看日志文件 /home/rtcbot/log/rtcbotsrv_1.log,如果最后一行显示Ready to receive command...表示服务正常启动.  
-    问题：最常见的启动问题就是找不到GPU或服务器cuda版本太低。rtcbotsrv 是需要安装cuda>=10.2的GPU环境。可以用 nvidia-smi 查看服务器上GPU是否正常以及相应的cuda版本  
+(5) rtcbotsrv 默认是作为后台守护进程运行的。如果成功启动后，先等一会后查看进程是否运行中:  
 
-+作为服务器启动上面的步骤就完成了。  
+	ps -ef|grep rtcbotsrv   
 
-+下面说明如何启动安装包附带的一个(用Python编写)web客户测试客户端：  
+也可以查看日志文件 /home/rtcbot/log/rtcbotsrv_1.log,如果最后一行显示Ready to receive command...表示服务正常启动.  
+问题：最常见的启动问题就是找不到GPU或服务器cuda版本太低。rtcbotsrv 是需要安装cuda>=10.2的GPU环境。可以用 nvidia-smi 查看服务器上GPU是否正常以及相应的cuda版本  
 
-+(1) 进入/home/rtcbot/webdemo,编辑 webmain.py, 将27行的 avdata_home = "/home/work/rainbot/avdata" 修改为为实际的目录，在这里就是avdata_home = "/home/rtcbot/avdata"
+#### 作为服务器启动上面的步骤就完成了。  
 
-   ( 注:如果服务正常启动，会自动创建 /home/rtcbot/avdata 目录)  
+下面说明如何启动安装包附带的一个(用Python编写)web客户测试客户端：  
 
-+(2) 运行这个Python脚本需要安装 Flask,flask_cors 包。如果还没有安装的话，执行:  
-         <span>```pip install Flask  
+(1) 进入/home/rtcbot/webdemo,编辑 webmain.py, 将27行的 avdata_home = "/home/work/rainbot/avdata" 修改为为实际的目录，在这里就是avdata_home = "/home/rtcbot/avdata"
+
+(2) 运行这个Python脚本需要安装 Flask,flask_cors 包。如果还没有安装的话，执行:  
+
+	pip install Flask  
 	pip install flask_cors   ```<span>  	
-     	建议使用Python3.6以上版本  
 
-+(3) 注意到 webmain.py 的最后2行代码是：  
- <span>```
-    app.run(host="0.0.0.0", port=8091, ssl_context=('server.crt', 'server.key'))    
-    #app.run(host="0.0.0.0", port=8091)   ```<span>
-	
-表明最好是用 https 的方式启动web服务。这是因为用手机浏览器打开测试页面时，需要用到摄像头和麦克风。目前主流的浏览器都不支持在非https的情况下使用摄像头和麦克风了。    
-所以你需要为Flask的web服务配置一个简单的https。这个网上很多写如何配置的文章，在这里就不再赘述。  
-	
-+(4) 运行 python webmain.py     
+建议使用Python3.6以上版本  
 
-+(5) 用手机浏览器打开相应的地址(端口默认是8091)，比如 https://192.168.0.202:8091/static/index.html  
-    可以看到4个演示场景的页面入口。点击进入后看到测试麦克分和摄像头的页面（默认使用前置摄像头）。如果测试麦克分和摄像头正常，点击关闭。  
-	然后点击右上角的“开始”按钮，即可以开始和后台的数字人客户进行视频交互。  
+(3) 注意到 webmain.py 的最后2行代码是：  
+
+	app.run(host="0.0.0.0", port=8091, ssl_context=('server.crt', 'server.key'))  
+	#app.run(host="0.0.0.0", port=8091) 
+	
+表明最好是用 https 的方式启动web服务。这是因为用手机浏览器打开测试页面时，需要用到摄像头和麦克风。目前主流的浏览器都不支持在非https的情况下使用摄像头和麦克风了。所以你需要为Flask的web服务配置一个简单的https。这个网上很多写如何配置的文章，在这里就不再赘述。  
+	
+(4) 运行:  
+	python webmain.py     
+
+(5) 用手机浏览器打开相应的地址(端口默认是8091)，比如 https://192.168.0.202:8091/static/index.html . 可以看到4个演示场景的页面入口。点击进入后看到测试麦克分和摄像头的页面（默认使用前置摄像头）。如果测试麦克分和摄像头正常，点击关闭。  然后点击右上角的“开始”按钮，即可以开始和后台的数字人客户进行视频交互。  
 
 # 关于声网账号  
 
