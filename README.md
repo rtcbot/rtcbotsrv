@@ -22,7 +22,11 @@ rtcbot Server是一个AI驱动的、基于实时音视频交互的视频见证�
 
 # 下载安装免费版
 
-百度网盘：
++百度网盘：链接：https://pan.baidu.com/s/1lxBqsf30rhQL9r5QYzURLg 提取码：a2d5
+
++部署要求：操作系统 centos 7以上，带Nvidia GPU，cuda>=10.2  
+
++免费版自带4个场景的demo（H5客户端），安装说明如下：
 
 # 其它
  一些说明参见： https://weibo.com/rtcbot  
